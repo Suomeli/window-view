@@ -18,7 +18,7 @@ public class CameraMove : MonoBehaviour
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
 
         ///updates rotation until desired rotation reached
-        Vector3 target_rotation = target.transform.localRotation.eulerAngles;
+        Quaternion target_rotation = Quaternion.Euler(target.transform.localRotation.eulerAngles);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, target_rotation, turningRate * Time.deltaTime);
 
     }
