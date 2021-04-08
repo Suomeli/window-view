@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ui : MonoBehaviour
+	
+	public InputField input_adress;
+	public InputField input_height;
+	public InputField input_direction;
 {
     // Start is called before the first frame update
     void Start()
@@ -20,9 +24,9 @@ public class ui : MonoBehaviour
 	// SendParameters is called when the user presses "OK"-button
 	void SendParameters ()
 	{
-		string adress = Input_adress.text;
-		double height = Input_height.text;
-		double direction = Input_direction.text;
+		string adress = input_adress.text;
+		double height = input_height.text;
+		double direction = input_direction.text;
 		Debug.Log("Annettu osoite: " + adress + " Annettu korkeus: " + height + " Annettu suunta: " + direction);
 	}
 }

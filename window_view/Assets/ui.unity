@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 109072451}
   - component: {fileID: 109072450}
   m_Layer: 5
-  m_Name: Input_height
+  m_Name: input_height
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 159567173}
   - component: {fileID: 159567172}
   m_Layer: 0
-  m_Name: Background
+  m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1396,7 +1396,7 @@ GameObject:
   - component: {fileID: 1293273695}
   - component: {fileID: 1293273694}
   m_Layer: 5
-  m_Name: Input_direction
+  m_Name: input_direction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2113,7 +2113,7 @@ GameObject:
   - component: {fileID: 1946787391}
   - component: {fileID: 1946787390}
   m_Layer: 5
-  m_Name: Button
+  m_Name: button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2234,7 +2234,7 @@ GameObject:
   - component: {fileID: 2067981772}
   - component: {fileID: 2067981771}
   m_Layer: 5
-  m_Name: Input_adress
+  m_Name: input_adress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
