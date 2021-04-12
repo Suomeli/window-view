@@ -11,6 +11,7 @@ public class ui : MonoBehaviour {
 	public TMP_InputField input_adress;
 	public TMP_InputField input_height;
 	public TMP_InputField input_direction;
+    public Vector3 target_coordinates = Vector3.zero;
 
 
     // SendParameters is called when the user presses "OK"-button
@@ -24,14 +25,17 @@ public class ui : MonoBehaviour {
             formatinfo.NumberGroupSeparator = ",";
 
             ///read inputs into variables
-            ///nuber variables are converted from text to doouble
+            ///nuber variables are converted from text to double and then to float
             string adress = input_adress.text;
-            double height = Convert.ToDouble(input_height.text, formatinfo);
-            double direction = Convert.ToDouble(input_direction.text, formatinfo);
+            float height = Convert.ToSingle(Convert.ToDouble(input_height.text, formatinfo));
+            float direction = Convert.ToSingle(Convert.ToDouble(input_direction.text, formatinfo));
             Debug.Log("Annettu osoite: " + adress + " Annettu korkeus: " + height + " Annettu suunta: " + direction);
 
+            target_coordinates.Set(10f, 10f, height);
+            Debug.Log(target_coordinates);
+            
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             Debug.Log("Virheellinen syöte!");
         }
