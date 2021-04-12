@@ -12,6 +12,8 @@ public class ui : MonoBehaviour {
 	public TMP_InputField input_height;
 	public TMP_InputField input_direction;
     public Vector3 target_coordinates = Vector3.zero;
+    public Transform targetEmpty;
+
 
 
     // SendParameters is called when the user presses "OK"-button
@@ -31,9 +33,17 @@ public class ui : MonoBehaviour {
             float direction = Convert.ToSingle(Convert.ToDouble(input_direction.text, formatinfo));
             Debug.Log("Annettu osoite: " + adress + " Annettu korkeus: " + height + " Annettu suunta: " + direction);
 
-            target_coordinates.Set(10f, 10f, height);
-            Debug.Log(target_coordinates);
+            target_coordinates.Set(0f, height, 0f);
+            Quaternion target_rotation = Quaternion.Euler(0, direction, 0);
+
+            targetEmpty.position = target_coordinates;
+            targetEmpty.rotation = target_rotation;         
             
+
+            Debug.Log(target_coordinates);
+            Debug.Log(target_rotation);
+
+
         }
         catch (Exception)
         {

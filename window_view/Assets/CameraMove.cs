@@ -18,7 +18,7 @@ public class CameraMove : MonoBehaviour
         {
             
             ///updates each frame to move camera towards desired position until reached
-            Vector3 targetPosition = target.TransformPoint(new Vector3(0, 5, -10));
+            Vector3 targetPosition = target.TransformPoint(new Vector3(0, 0, 0));
             transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
 
             ///updates rotation until desired rotation reached
