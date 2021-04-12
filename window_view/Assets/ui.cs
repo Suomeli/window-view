@@ -28,10 +28,13 @@ public class ui : MonoBehaviour {
     {
         try
         {
+            ///Define possible decimal separators of number format
             NumberFormatInfo formatinfo = new NumberFormatInfo();
             formatinfo.NumberDecimalSeparator = ".";
             formatinfo.NumberGroupSeparator = ",";
 
+            ///read inputs into variables
+            ///nuber variables are converted from text to doouble
             string adress = input_adress.text;
             double height = Convert.ToDouble(input_height.text, formatinfo);
             double direction = Convert.ToDouble(input_direction.text, formatinfo);
@@ -40,7 +43,7 @@ public class ui : MonoBehaviour {
         }
         catch (Exception ex)
         {
-            Debug.Log("Incorrect Input");
+            Debug.Log("Virheellinen syöte!");
         }
     }
 }
