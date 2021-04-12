@@ -4,27 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using System.Globalization;
+using TMPro;
 
 public class ui : MonoBehaviour { 
 	
-	public InputField input_adress;
-	public InputField input_height;
-	public InputField input_direction;
+	public TMP_InputField input_adress;
+	public TMP_InputField input_height;
+	public TMP_InputField input_direction;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Here code that clears the text in the input fields
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     // SendParameters is called when the user presses "OK"-button
-    void SendParameters()
+    public void SendParameters()
     {
         try
         {
