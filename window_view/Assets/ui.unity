@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 109072451}
   - component: {fileID: 109072450}
   m_Layer: 5
-  m_Name: input_height
+  m_Name: Input_Height
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 159567173}
   - component: {fileID: 159567172}
   m_Layer: 0
-  m_Name: background
+  m_Name: MenuBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 276107238}
   - component: {fileID: 276107237}
   m_Layer: 5
-  m_Name: Placeholder
+  m_Name: InnputDirectionPlaceholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 406423342}
   - component: {fileID: 406423341}
   m_Layer: 5
-  m_Name: Text
+  m_Name: InputAdressText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -675,7 +675,7 @@ GameObject:
   - component: {fileID: 408485067}
   - component: {fileID: 408485066}
   m_Layer: 5
-  m_Name: Placeholder
+  m_Name: InputHeightPlaceholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -829,7 +829,7 @@ GameObject:
   - component: {fileID: 819482354}
   - component: {fileID: 819482353}
   m_Layer: 5
-  m_Name: Text
+  m_Name: InputHeightText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -962,7 +962,7 @@ GameObject:
   - component: {fileID: 842638392}
   - component: {fileID: 842638393}
   m_Layer: 5
-  m_Name: menu
+  m_Name: Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1345,7 +1345,7 @@ GameObject:
   - component: {fileID: 1182031234}
   - component: {fileID: 1182031235}
   m_Layer: 5
-  m_Name: Text Area
+  m_Name: InnputHeightTextArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1399,7 +1399,7 @@ GameObject:
   - component: {fileID: 1293273695}
   - component: {fileID: 1293273694}
   m_Layer: 5
-  m_Name: input_direction
+  m_Name: Input_Direction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1572,7 +1572,7 @@ GameObject:
   - component: {fileID: 1294543213}
   - component: {fileID: 1294543214}
   m_Layer: 5
-  m_Name: Text Area
+  m_Name: InputAdressTextArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1692,7 +1692,7 @@ GameObject:
   - component: {fileID: 1329950552}
   - component: {fileID: 1329950551}
   m_Layer: 5
-  m_Name: Placeholder
+  m_Name: InputAdressPlaceholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1846,7 +1846,7 @@ GameObject:
   - component: {fileID: 1458839637}
   - component: {fileID: 1458839636}
   m_Layer: 5
-  m_Name: Text
+  m_Name: InputDirectionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2062,7 +2062,7 @@ GameObject:
   - component: {fileID: 1911759778}
   - component: {fileID: 1911759779}
   m_Layer: 5
-  m_Name: Text Area
+  m_Name: InputDirectionTextArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2117,7 +2117,7 @@ GameObject:
   - component: {fileID: 1946787390}
   - component: {fileID: 1946787393}
   m_Layer: 5
-  m_Name: button
+  m_Name: OK_button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2265,7 +2265,7 @@ GameObject:
   - component: {fileID: 2067981772}
   - component: {fileID: 2067981771}
   m_Layer: 5
-  m_Name: input_adress
+  m_Name: Input_Adress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
