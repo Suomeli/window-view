@@ -2,17 +2,34 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    public bool FreeMode = false;
+    
+    ///Coordinate mode parameters
     public Transform target;
 
     public float smoothTime = 0.3f;
     private Vector3 velocity = Vector3.zero;
+
     public Vector3 offset;
     public float turningRate = 30f;
+
+    /// FreeMode parameters
+    public bool FreeMode = false;
+
+    public float speedH = 2.0f;
+    public float speedV = 2.0f;
+
+    private float yaw = 0.0f;
+    private float pitch = 0.0f;
 
 
     void Update()
     {
+        ///FreeMode toggle check
+        if (Input.GetKeyDown("f"))
+        {
+            FreeMode = !FreeMode;
+        }
+        
 
         if (FreeMode == false)
         {
@@ -27,8 +44,12 @@ public class CameraMove : MonoBehaviour
         }
         else
         {
+            ///Freemode camera rotation
+            yaw += speedH * Input.GetAxis("Mouse X");
+            pitch -= speedV * Input.GetAxis("Mouse Y");
 
-            Debug.Log("FreeMode");
+            transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
+
 
         }
     }

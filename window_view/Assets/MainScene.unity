@@ -1105,6 +1105,8 @@ MonoBehaviour:
   input_direction: {fileID: 0}
   target_coordinates: {x: 0, y: 0, z: 0}
   targetEmpty: {fileID: 0}
+  floor_height: 0
+  ground_height: 0
 --- !u!1 &866588961
 GameObject:
   m_ObjectHideFlags: 0
@@ -2288,11 +2290,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c4b2ff0a96c214d857e1cf3585efce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FreeMode: 0
   target: {fileID: 1124571821}
   smoothTime: 0.3
   offset: {x: 0, y: 0, z: 0}
   turningRate: 90
+  FreeMode: 0
+  speedH: 2
+  speedV: 2
 --- !u!1 &1911759777
 GameObject:
   m_ObjectHideFlags: 0
@@ -2591,6 +2595,8 @@ MonoBehaviour:
   input_direction: {fileID: 1293273694}
   target_coordinates: {x: 0, y: 0, z: 0}
   targetEmpty: {fileID: 1124571821}
+  floor_height: 3
+  ground_height: 0
 --- !u!1 &2038619840
 GameObject:
   m_ObjectHideFlags: 0

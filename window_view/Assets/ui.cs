@@ -14,7 +14,7 @@ public class ui : MonoBehaviour {
     public Vector3 target_coordinates = Vector3.zero;
     public Transform targetEmpty;
 
-    public float floor_height = 0f;
+    public float floor_height = 3f;
     public float ground_height = 0f;
 
 
