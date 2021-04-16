@@ -1,45 +1,66 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.IO;
-using SimpleJSON;
 using System.Linq;
+using System.Text.RegularExpressions;
+using UnityEngine;
+using SimpleJSON;
 
+/* 
+This script searches for coordinates of input location from osoitteet_hki.json file.
+Necessary parameters are inputAddress and jsonFileLocation. InputAddress is for address
+in string format. JsonFileLocation is a string parameter for json file name. If the json file
+is in a folder, remember to add the folder name to the string parameter. 
+For example "/tiedostot//osoitteet_hki.json"
+
+Currently returns coordinates in int format. Float does not work as intended at the moment because
+of scientific notation. Unity shortens too large values. InputAddress string has to be exactly as
+the address in json file. There is no fuzzy search.
+*/
 public class AddressReader : MonoBehaviour
 {
-    public void ReturnCoordinates(string inputAddress, string jsonFileLocation, List<int> coordinates) {
-        // Trim whitespaces from front and end of the string
+    public List<int> returnCoordinates(string inputAddress, string jsonFileLocation) {
+        // Create an empty list for coordinates
+        List<int> coordinates = new List<int>();
+        
+        // Trim whitespaces from front and end of the string. Replace multiple whitespace with one white space.
+        // Split the string and save the results to an array.
         inputAddress = inputAddress.Trim();
-        // Split the string and save the results into an array
+        inputAddress = Regex.Replace(inputAddress,@"\s+"," ");
         string[] stringArray = inputAddress.Split(char.Parse(" "));
 
-        // Store street name from array to a variable
+        // Store street name. Check if the selected indexes of array are null or not and save necessary data based on that.
         string streetName = stringArray[0];
-        // Check if the array is not null at the index location. If true save building number. If not save 0 value.
-        string buildingNumber = stringArray.ElementAtOrDefault(1) != null ? stringArray[1] : "0";
-        // Check if the array is not null at the index location. If true save building number. If not save null.
+        string buildingNumber = stringArray.ElementAtOrDefault(1) != null ? stringArray[1] : null;
         string buildingLetter = stringArray.ElementAtOrDefault(2) != null ? stringArray[2] : null;
 
-        // Path of the json file
+        // Path of the json file. Read all lines into a string. Parse the json string via simpleJSON plugin
         string path = Application.dataPath + jsonFileLocation;
-        // Read all lines into a string
         string jsonString = File.ReadAllText(path);
-        // Parse the json string via simpleJSON plugin
         JSONNode data = JSON.Parse(jsonString);
-        // Clear list from data
-        coordinates.Clear();
 
         // Loop through features in json file
         foreach(JSONNode location in data["features"]) {
-            // Check if current street name matches the name in json file
+            // Check if the current street name matches json files street name
             if (streetName == location["properties"]["katunimi"]) {
-                // Check if current building number matchest json files number
-                if (buildingNumber == location["properties"]["osoitenumero_teksti"]) {
-                    // Add coordinates to an empty list
+                // Check if the current osoitenumero_teksti is not null and matches the buildingNumber variable
+                if (buildingNumber == location["properties"]["osoitenumero_teksti"] && location["properties"]["osoitenumero_teksti"] != null) {
+                    // Add coordinates to list
+                    coordinates.Add(location["geometry"]["coordinates"][0]);
+                    coordinates.Add(location["geometry"]["coordinates"][1]);
+                }
+                // Cehck if the osoitenumero_teksti is null
+                else if (location["properties"]["osoitenumero_teksti"] == null) {
+                    // Add coordinates to list
                     coordinates.Add(location["geometry"]["coordinates"][0]);
                     coordinates.Add(location["geometry"]["coordinates"][1]);
                 }
             }
         }
+
+        // return results
+        return coordinates;
     }
+
 }
+

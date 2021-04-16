@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+Testing area for AddressReader script.
+Works only if this script and AddressReader script are
+in attached to same object. Getcomponent searches for the
+script that is attached to the same gameobject.
+*/
+
 public class TestCaller : MonoBehaviour
 {
     AddressReader addressReader;
@@ -11,6 +18,7 @@ public class TestCaller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Returns script component of the gameobject. If component is not found returns null;
         addressReader = GetComponent<AddressReader>();
     }
 
@@ -19,8 +27,8 @@ public class TestCaller : MonoBehaviour
     {
         // Activate ReturnCoordinates function when space is pressed in play mode
         if (Input.GetKeyDown(KeyCode.Space)) {
-            addressReader.ReturnCoordinates(address,"/osoitteet_hki.json",coordinates);
-            Debug.Log(coordinates);
+            // Save coordinates into a list
+            coordinates = addressReader.returnCoordinates(address,"/osoitteet_hki.json");
         }
     }
 }
