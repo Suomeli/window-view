@@ -17,6 +17,7 @@ public class ui : MonoBehaviour {
     public float floor_height = 3f;
     public float ground_height = 0f;
 
+    public string test_address = "Kustaankatu 10"; 
 
     AddressReader addressReader;
     public List<int> coordinates;
@@ -53,7 +54,7 @@ public class ui : MonoBehaviour {
 
             // Save coordinates into a list
             
-            coordinates = addressReader.returnCoordinates("Kustaankatu 10", "/osoitteet_hki.json");
+            coordinates = addressReader.returnCoordinates(test_address, "/osoitteet_hki.json");
 
 
             ///target height from floors and terrain
