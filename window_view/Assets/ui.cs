@@ -18,6 +18,20 @@ public class ui : MonoBehaviour {
     public float ground_height = 0f;
 
 
+    AddressReader addressReader;
+    public List<int> coordinates;
+    public Vector3 coordinateTransformation;
+    
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        // Returns script component of the gameobject. If component is not found returns null;
+        addressReader = GetComponent<AddressReader>();
+
+    }
+
 
     // SendParameters is called when the user presses "OK"-button
     public void SendParameters()
@@ -37,12 +51,17 @@ public class ui : MonoBehaviour {
             float direction = Convert.ToSingle(Convert.ToDouble(input_direction.text, formatinfo));
             Debug.Log("Annettu osoite: " + adress + " Annettu korkeus: " + height + " Annettu suunta: " + direction);
 
+            // Save coordinates into a list
+            
+            coordinates = addressReader.returnCoordinates("Kustaankatu 10", "/osoitteet_hki.json");
+
+
             ///target height from floors and terrain
 
             float target_height = height * floor_height + ground_height;
 
             ///set target values to variables
-            target_coordinates.Set(0f, target_height, 0f);
+            target_coordinates.Set(coordinates[0] + coordinateTransformation[0], target_height, coordinates[1] + coordinateTransformation[2]);
             Quaternion target_rotation = Quaternion.Euler(0, direction, 0);
 
             ///move target empty object to target values of transform and rotation

@@ -20,6 +20,7 @@ the address in json file. There is no fuzzy search.
 public class AddressReader : MonoBehaviour
 {
     public List<int> returnCoordinates(string inputAddress, string jsonFileLocation) {
+                
         // Create an empty list for coordinates
         List<int> coordinates = new List<int>();
         
@@ -28,7 +29,7 @@ public class AddressReader : MonoBehaviour
         inputAddress = inputAddress.Trim();
         inputAddress = Regex.Replace(inputAddress,@"\s+"," ");
         string[] stringArray = inputAddress.Split(char.Parse(" "));
-
+        
         // Store street name. Check if the selected indexes of array are null or not and save necessary data based on that.
         string streetName = stringArray[0];
         string buildingNumber = stringArray.ElementAtOrDefault(1) != null ? stringArray[1] : null;
@@ -36,6 +37,7 @@ public class AddressReader : MonoBehaviour
 
         // Path of the json file. Read all lines into a string. Parse the json string via simpleJSON plugin
         string path = Application.dataPath + jsonFileLocation;
+
         string jsonString = File.ReadAllText(path);
         JSONNode data = JSON.Parse(jsonString);
 
@@ -57,7 +59,7 @@ public class AddressReader : MonoBehaviour
                 }
             }
         }
-
+        
         // Simple checker if list is empty or not
         if (coordinates.Count.Equals(0)) {
             Debug.Log("Did not find coordinates. Check address for typos.");
