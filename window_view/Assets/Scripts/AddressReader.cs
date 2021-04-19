@@ -7,11 +7,11 @@ using UnityEngine;
 using SimpleJSON;
 
 /* 
-This script searches for coordinates of input location from osoitteet_hki.json file.
+This script searches for coordinates of input address from osoitteet_hki.json file.
 Necessary parameters are inputAddress and jsonFileLocation. InputAddress is for address
 in string format. JsonFileLocation is a string parameter for json file name. If the json file
 is in a folder, remember to add the folder name to the string parameter. 
-For example "/tiedostot//osoitteet_hki.json"
+For example "/tiedostot/osoitteet_hki.json"
 
 Currently returns coordinates in int format. Float does not work as intended at the moment because
 of scientific notation. Unity shortens too large values. InputAddress string has to be exactly as
@@ -49,13 +49,22 @@ public class AddressReader : MonoBehaviour
                     coordinates.Add(location["geometry"]["coordinates"][0]);
                     coordinates.Add(location["geometry"]["coordinates"][1]);
                 }
-                // Cehck if the osoitenumero_teksti is null
+                // Check if the osoitenumero_teksti is null
                 else if (location["properties"]["osoitenumero_teksti"] == null) {
                     // Add coordinates to list
                     coordinates.Add(location["geometry"]["coordinates"][0]);
                     coordinates.Add(location["geometry"]["coordinates"][1]);
                 }
             }
+        }
+
+        // Simple checker if list is empty or not
+        if (coordinates.Count.Equals(0)) {
+            Debug.Log("Did not find coordinates. Check address for typos.");
+        }
+
+        else {
+            Debug.Log(coordinates[0] + "," + coordinates[1]);
         }
 
         // return results
