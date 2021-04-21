@@ -1107,6 +1107,7 @@ MonoBehaviour:
   targetEmpty: {fileID: 0}
   floor_height: 0
   ground_height: 0
+  test_address: Kustaankatu 10
   coordinates: 
   coordinateTransformation: {x: 0, y: 0, z: 0}
 --- !u!1 &866588961
@@ -2600,8 +2601,9 @@ MonoBehaviour:
   targetEmpty: {fileID: 1124571821}
   floor_height: 3
   ground_height: 0
+  test_address: Kustaankatu 10
   coordinates: 
-  coordinateTransformation: {x: -25497560, y: 0, z: -6675217}
+  coordinateTransformation: {x: -25506306, y: 0, z: -6668000}
 --- !u!114 &1946787394
 MonoBehaviour:
   m_ObjectHideFlags: 0
