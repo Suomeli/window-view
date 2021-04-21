@@ -17,18 +17,20 @@ public class ui : MonoBehaviour {
     public float floor_height = 3f;
     public float ground_height = 0f;
 
-    public string test_address = "Kustaankatu 10"; 
-
+    public string test_address; 
     AddressReader addressReader;
     public List<int> coordinates;
-    public Vector3 coordinateTransformation;
+
+    // coordinates for tie-point in real life and in engine
+    public Vector3 coordinateRealLife = new Vector3(25497471.56f, 0f, 6672725.34f);
+    public Transform coordinateTarget;
     
 
 
     // Start is called before the first frame update
     void Start()
     {
-        // Returns script component of the gameobject. If component is not found returns null;
+        // Returns script component of the gameobject addressreader. If component is not found returns null;
         addressReader = GetComponent<AddressReader>();
 
     }
@@ -62,6 +64,7 @@ public class ui : MonoBehaviour {
             float target_height = height * floor_height + ground_height;
 
             ///set target values to variables
+            Vector3 coordinateTransformation = coordinateTarget.position - coordinateRealLife;
             target_coordinates.Set(coordinates[0] + coordinateTransformation[0], target_height, coordinates[1] + coordinateTransformation[2]);
             Quaternion target_rotation = Quaternion.Euler(0, direction, 0);
 
