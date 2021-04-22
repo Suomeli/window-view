@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class CameraMove : MonoBehaviour
 {
@@ -22,10 +23,16 @@ public class CameraMove : MonoBehaviour
     private float pitch = 0.0f;
 
 
+    //variables for checkin if UI is active
+    public bool UIactive = false;
+    
+
     void Update()
     {
+        
+        
         ///FreeMode toggle check
-        if (Input.GetKeyDown("f"))
+        if (UIactive == false && Input.GetKeyDown("f"))
         {
             FreeMode = !FreeMode;
         }
@@ -42,7 +49,7 @@ public class CameraMove : MonoBehaviour
             Quaternion target_rotation = Quaternion.Euler(target.transform.localRotation.eulerAngles);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, target_rotation, turningRate * Time.deltaTime);
         }
-        else
+        else if(UIactive == false)
         {
             ///Freemode camera rotation
             yaw += speedH * Input.GetAxis("Mouse X");

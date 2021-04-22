@@ -8,6 +8,7 @@ public class NextInputField : MonoBehaviour{
     
     public Camera maincamera;
     public TMP_InputField nextField;
+    public bool active;
 
     // Update is called once per frame
     void Update()
@@ -17,15 +18,23 @@ public class NextInputField : MonoBehaviour{
         {
             nextField.ActivateInputField();
         }
-
-
-        //exit freemode when field is active
+        else
+        {
+            //exit freemode when field is active
         CameraMove cameramove = maincamera.GetComponent<CameraMove>();
 
         if (GetComponent<TMP_InputField>().isFocused)
         {
-            cameramove.FreeMode = false;
+                cameramove.UIactive = true;
+                cameramove.FreeMode = false;
         }
+        else
+        {
+            cameramove.UIactive = false;
+        }
+        }
+
+        
         
     }
 }

@@ -311,7 +311,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5827983d6e836e34c8b4b6a92ceedcae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maincamera: {fileID: 1773849965}
   nextField: {fileID: 1293273694}
+  active: 0
 --- !u!1 &159567170
 GameObject:
   m_ObjectHideFlags: 0
@@ -1881,7 +1883,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5827983d6e836e34c8b4b6a92ceedcae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maincamera: {fileID: 1773849965}
   nextField: {fileID: 2067981771}
+  active: 0
 --- !u!1 &1294543212
 GameObject:
   m_ObjectHideFlags: 0
@@ -2454,6 +2458,7 @@ MonoBehaviour:
   FreeMode: 0
   speedH: 2
   speedV: 2
+  UIactive: 0
 --- !u!1 &1911759777
 GameObject:
   m_ObjectHideFlags: 0
@@ -2864,4 +2869,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5827983d6e836e34c8b4b6a92ceedcae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maincamera: {fileID: 1773849965}
   nextField: {fileID: 109072450}
+  active: 0
