@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 109072452}
   - component: {fileID: 109072451}
   - component: {fileID: 109072450}
+  - component: {fileID: 109072453}
   m_Layer: 5
   m_Name: Input_Height
   m_TagString: Untagged
@@ -298,6 +299,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109072448}
   m_CullTransparentMesh: 1
+--- !u!114 &109072453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109072448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5827983d6e836e34c8b4b6a92ceedcae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextField: {fileID: 1293273694}
 --- !u!1 &159567170
 GameObject:
   m_ObjectHideFlags: 0
@@ -1691,6 +1705,7 @@ GameObject:
   - component: {fileID: 1293273696}
   - component: {fileID: 1293273695}
   - component: {fileID: 1293273694}
+  - component: {fileID: 1293273697}
   m_Layer: 5
   m_Name: Input_Direction
   m_TagString: Untagged
@@ -1854,6 +1869,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1293273692}
   m_CullTransparentMesh: 1
+--- !u!114 &1293273697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293273692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5827983d6e836e34c8b4b6a92ceedcae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextField: {fileID: 2067981771}
 --- !u!1 &1294543212
 GameObject:
   m_ObjectHideFlags: 0
@@ -2660,6 +2688,7 @@ GameObject:
   - component: {fileID: 2067981773}
   - component: {fileID: 2067981772}
   - component: {fileID: 2067981771}
+  - component: {fileID: 2067981774}
   m_Layer: 5
   m_Name: Input_Adress
   m_TagString: Untagged
@@ -2823,3 +2852,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2067981769}
   m_CullTransparentMesh: 1
+--- !u!114 &2067981774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067981769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5827983d6e836e34c8b4b6a92ceedcae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextField: {fileID: 109072450}
