@@ -24,6 +24,9 @@ public class ui : MonoBehaviour {
     // coordinates for tie-point in real life and in engine
     public Vector3 coordinateRealLife = new Vector3(25497471.56f, 0f, 6672725.34f);
     public Transform coordinateTarget;
+
+    //variable to check if input has changed for getting new coordinates
+    private string previousaddress = "";
     
 
 
@@ -49,15 +52,20 @@ public class ui : MonoBehaviour {
 
             ///read inputs into variables
             ///nuber variables are converted from text to double and then to float
-            string adress = input_adress.text;
+            string address = input_adress.text;
             float height = Convert.ToSingle(Convert.ToDouble(input_height.text, formatinfo));
             float direction = Convert.ToSingle(Convert.ToDouble(input_direction.text, formatinfo));
-            Debug.Log("Annettu osoite: " + adress + " Annettu korkeus: " + height + " Annettu suunta: " + direction);
+            Debug.Log("Annettu osoite: " + address + " Annettu korkeus: " + height + " Annettu suunta: " + direction);
 
             // Save coordinates into a list
-            
-            coordinates = addressReader.returnCoordinates(test_address, "/osoitteet_hki.json");
+            // if address has changed, get new coordinates
+            if (previousaddress.Equals(address) == false){
 
+                coordinates = addressReader.returnCoordinates(test_address, "/osoitteet_hki.json");
+                previousaddress = address;
+
+            }
+            
 
             ///target height from floors and terrain
 
