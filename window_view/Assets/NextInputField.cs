@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+
 public class NextInputField : MonoBehaviour{
 
+    public Camera maincamera;
     public TMP_InputField nextField;
 
     // Update is called once per frame
@@ -14,5 +16,14 @@ public class NextInputField : MonoBehaviour{
         {
             nextField.ActivateInputField();
         }
+
+        CameraMove cameramove = maincamera.GetComponent<CameraMove>();
+
+        if (GetComponent<TMP_InputField>().isFocused)
+        {
+            
+            cameramove.FreeMode = false;
+        }
+        
     }
 }
