@@ -19,20 +19,35 @@ public class CameraMove : MonoBehaviour
     public float speedH = 2.0f;
     public float speedV = 2.0f;
 
-    private float yaw = 0.0f;
+    private float yaw = -0.0f;
     private float pitch = 0.0f;
+    public Vector3 rotation;
 
 
     //variables for checkin if UI is active
-    public bool UIactive = false;
-    
+    public TMP_InputField field1;
+    public TMP_InputField field2;
+    public TMP_InputField field3;
+
+    private bool UI_active = false;
 
     void Update()
     {
-        
-        
+        //check if any inputfield is active
+        //this is quite a hackey way to do it, maybe better ways exist
+        //change UI_active variable based on results
+        if (field1.GetComponent<TMP_InputField>().isFocused || field2.GetComponent<TMP_InputField>().isFocused || field3.GetComponent<TMP_InputField>().isFocused)
+        {
+            UI_active = true;
+        }
+        else
+        {
+            UI_active = false;
+        }
+
+
         ///FreeMode toggle check
-        if (UIactive == false && Input.GetKeyDown("f"))
+        if (UI_active == false && Input.GetKeyDown("f"))
         {
             FreeMode = !FreeMode;
         }
@@ -48,8 +63,11 @@ public class CameraMove : MonoBehaviour
             ///updates rotation until desired rotation reached
             Quaternion target_rotation = Quaternion.Euler(target.transform.localRotation.eulerAngles);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, target_rotation, turningRate * Time.deltaTime);
+            //get default view direction for freecam from target
+            yaw = target.transform.localRotation.eulerAngles.y;
+
         }
-        else if(UIactive == false)
+        else if(UI_active == false)
         {
             ///Freemode camera rotation
             yaw += speedH * Input.GetAxis("Mouse X");

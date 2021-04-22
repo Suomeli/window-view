@@ -61,7 +61,7 @@ public class ui : MonoBehaviour {
             // if address has changed, get new coordinates
             if (previousaddress.Equals(address) == false){
 
-                coordinates = addressReader.returnCoordinates(test_address, "/osoitteet_hki.json");
+                coordinates = addressReader.returnCoordinates(address, "/osoitteet_hki.json");
                 previousaddress = address;
 
             }
