@@ -1458,7 +1458,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 466626640}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 104.6, y: 0, z: 47.6}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 1213708592}
@@ -5558,6 +5558,7 @@ MonoBehaviour:
   FreeMode: 0
   speedH: 2
   speedV: 2
+  rotation: {x: 0, y: 0, z: 0}
   field1: {fileID: 2067981771}
   field2: {fileID: 109072450}
   field3: {fileID: 1293273694}
