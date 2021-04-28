@@ -2959,6 +2959,9 @@ MonoBehaviour:
   coordinates: 
   coordinateRealLife: {x: 0, y: 0, z: 0}
   coordinateTarget: {fileID: 0}
+  layer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!4 &845293736 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8f325df598802a740a9ae6be387045dc, type: 3}
@@ -6800,11 +6803,9 @@ MonoBehaviour:
   field1: {fileID: 2067981771}
   field2: {fileID: 109072450}
   field3: {fileID: 1293273694}
-  lastHit: {fileID: 0}
-  collision: {x: 0, y: 0, z: 0}
   layer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!1001 &1798454810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7477,10 +7478,13 @@ MonoBehaviour:
   targetEmpty: {fileID: 1124571821}
   floor_height: 3
   ground_height: 0
-  test_address: Unioninkatu 13
+  test_address: Unioninkatu 17
   coordinates: 
   coordinateRealLife: {x: 25497472, y: 0, z: 6672725.5}
   coordinateTarget: {fileID: 1213708592}
+  layer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &1946787394
 MonoBehaviour:
   m_ObjectHideFlags: 0
