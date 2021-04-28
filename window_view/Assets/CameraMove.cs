@@ -31,6 +31,11 @@ public class CameraMove : MonoBehaviour
 
     private bool UI_active = false;
 
+    public GameObject lastHit;
+    public Vector3 collision = Vector3.zero;
+    public LayerMask layer;
+
+
     void Update()
     {
         //check if any inputfield is active
@@ -66,6 +71,25 @@ public class CameraMove : MonoBehaviour
             //get default view direction for freecam from target
             yaw = target.transform.localRotation.eulerAngles.y;
 
+
+            //raycasting
+            //var ray = new Ray(targetPosition, target.transform.localRotation.eulerAngles);
+                        
+            RaycastHit hit;
+            
+            Debug.DrawRay(targetPosition, target.transform.localRotation.eulerAngles * 1000f, Color.red);
+
+            if (Physics.Raycast(targetPosition, target.transform.localRotation.eulerAngles, out hit, 1000, layer))
+            {
+                Debug.Log("hit:" + hit.transform.gameObject);
+                lastHit = hit.transform.gameObject;
+                collision = hit.point;
+            }
+            
+
+
+
+
         }
         else if(UI_active == false)
         {
@@ -79,4 +103,8 @@ public class CameraMove : MonoBehaviour
         }
     }
 
+
+    
+    
 }
+    
