@@ -2953,6 +2953,7 @@ MonoBehaviour:
   input_direction: {fileID: 0}
   target_coordinates: {x: 0, y: 0, z: 0}
   targetEmpty: {fileID: 0}
+  test_mode: 0
   floor_height: 0
   ground_height: 0
   test_address: Kustaankatu 10
@@ -6803,9 +6804,6 @@ MonoBehaviour:
   field1: {fileID: 2067981771}
   field2: {fileID: 109072450}
   field3: {fileID: 1293273694}
-  layer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!1001 &1798454810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7476,9 +7474,10 @@ MonoBehaviour:
   input_direction: {fileID: 1293273694}
   target_coordinates: {x: 0, y: 0, z: 0}
   targetEmpty: {fileID: 1124571821}
+  test_mode: 0
   floor_height: 3
   ground_height: 0
-  test_address: Unioninkatu 17
+  test_address: Kauppatori
   coordinates: 
   coordinateRealLife: {x: 25497472, y: 0, z: 6672725.5}
   coordinateTarget: {fileID: 1213708592}

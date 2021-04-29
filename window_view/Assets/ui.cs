@@ -14,6 +14,8 @@ public class ui : MonoBehaviour {
     public Vector3 target_coordinates = Vector3.zero;
     public Transform targetEmpty;
 
+    public bool test_mode;
+
     public float floor_height = 3f;
     public float ground_height = 0f;
 
@@ -64,8 +66,12 @@ public class ui : MonoBehaviour {
             // Save coordinates into a list
             // if address has changed, get new coordinates
             if (previousaddress.Equals(address) == false){
-
-                coordinates = addressReader.returnCoordinates(test_address, "/osoitteet_hki.json");
+                //test_address 
+                if (test_mode == true)
+                {
+                    address = test_address;
+                }
+                coordinates = addressReader.returnCoordinates(address, "/osoitteet_hki.json");
                 previousaddress = address;
 
             }
