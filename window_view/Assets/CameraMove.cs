@@ -54,7 +54,7 @@ public class CameraMove : MonoBehaviour
 
     }
 
-    ///returns the values of the target position with made by keys
+    ///returns the values of the target position made by keys
     private Vector3 ArrowKeyMovement()
     {
         Vector3 positionArrows = new Vector3();
