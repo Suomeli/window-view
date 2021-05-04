@@ -14,6 +14,8 @@ public class ui : MonoBehaviour {
     public Vector3 target_coordinates = Vector3.zero;
     public Transform targetEmpty;
 
+    public bool test_mode;
+
     public float floor_height = 3f;
     public float ground_height = 0f;
 
@@ -27,7 +29,11 @@ public class ui : MonoBehaviour {
 
     //variable to check if input has changed for getting new coordinates
     private string previousaddress = "";
-    
+
+
+    public LayerMask layer;
+    private Vector3 difference = Vector3.zero;
+
 
 
     // Start is called before the first frame update
@@ -60,7 +66,11 @@ public class ui : MonoBehaviour {
             // Save coordinates into a list
             // if address has changed, get new coordinates
             if (previousaddress.Equals(address) == false){
-
+                //test_address 
+                if (test_mode == true)
+                {
+                    address = test_address;
+                }
                 coordinates = addressReader.returnCoordinates(address, "/osoitteet_hki.json");
                 previousaddress = address;
 
@@ -78,12 +88,39 @@ public class ui : MonoBehaviour {
 
             ///move target empty object to target values of transform and rotation
             targetEmpty.position = target_coordinates;
-            targetEmpty.rotation = target_rotation;         
-            
-            ///show in console
-            Debug.Log(target_coordinates);
-            Debug.Log(target_rotation);
+            targetEmpty.rotation = target_rotation;
 
+            //raycasting
+
+            ///hits for forward and backward rays
+            RaycastHit hit1;
+            RaycastHit hit2;
+
+            ///check if there is building in front of the camera (ignores meshes from the wrong side)
+            if (Physics.Raycast(targetEmpty.position, targetEmpty.forward, out hit1, 100, layer))
+            {
+                ///if is, check back if wall is closer than camera
+                if (Physics.Raycast(hit1.point, targetEmpty.forward * -1, out hit2, 100, layer))
+                {
+                    ///if wall closer than camera, move target to the wall
+                    difference = targetEmpty.position - hit2.point;
+                    targetEmpty.position = targetEmpty.position - difference;
+                    
+                }
+            }
+            else
+            {
+                ///if no buildings in sight, cast ray back from 100 m away
+                if (Physics.Raycast(targetEmpty.position + targetEmpty.forward * 100, targetEmpty.forward * -1, out hit2, 200, layer))
+                {
+                    ///if building hit behind camera, move target to wall
+                    difference = targetEmpty.position - hit2.point;
+                    targetEmpty.position = targetEmpty.position - difference;
+                    
+                }
+            }
+            //move target 10cm away from wall
+            targetEmpty.position = targetEmpty.position + targetEmpty.forward * 0.1f;
 
         }
         ///faulty input

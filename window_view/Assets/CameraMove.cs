@@ -30,6 +30,8 @@ public class CameraMove : MonoBehaviour
     public TMP_InputField field3;
 
     private bool UI_active = false;
+    
+
 
     void Update()
     {
@@ -79,4 +81,8 @@ public class CameraMove : MonoBehaviour
         }
     }
 
+
+    
+    
 }
+    
