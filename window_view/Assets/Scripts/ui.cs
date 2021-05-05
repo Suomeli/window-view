@@ -73,7 +73,7 @@ public class ui : MonoBehaviour {
                 }
                 coordinates = addressReader.returnCoordinates(address, "/osoitteet_hki.json");
                 previousaddress = address;
-
+                Debug.Log("address");
             }
             
 
