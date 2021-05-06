@@ -15,8 +15,8 @@ public class MeasureDistances : MonoBehaviour
     public int draw_time = 5;
     public GameObject marker;
 
-    float FOV_horizontal = 70f;
-    float FOV_vertical = 41.02922f;
+    float FOV_horizontal = 68f;
+    float FOV_vertical = 35;
 
 
     public void AnalyzeView()
@@ -41,12 +41,11 @@ public class MeasureDistances : MonoBehaviour
                 //cast a ray, if hit measure distance and see if grid is dense enough
                 if (Physics.Raycast(camera1.transform.position, direction, out hit1, Mathf.Infinity, layer))
                 {
-                    
+                    Debug.DrawRay(camera1.transform.position, direction * hit1.distance, Color.red, draw_time);
 
                     //calculate measurement distance from angle, if distance larger than 1 m, decrease angle recursively
                     if (2 * Math.Tan((Math.PI / 180) * angle_change) * hit1.distance > 1)
                     {
-                        Debug.DrawRay(camera1.transform.position, direction * hit1.distance, Color.red, draw_time);
                         RaycastHit output = CastRay(angle_change, direction, hit1);
 
                         if (output.distance > furthest_distance)
@@ -58,7 +57,7 @@ public class MeasureDistances : MonoBehaviour
                         }
                         
                     }
-                    else if (hit1.distance > furthest_distance)
+                    if (hit1.distance > furthest_distance)
                     {
                         furthest = hit1;
                         furthest_distance = furthest.distance;
@@ -71,9 +70,9 @@ public class MeasureDistances : MonoBehaviour
             }
 
         }
-        
 
     }
+
     ///casting new ray from previous center
     public RaycastHit CastRay(float angle_change, Vector3 direction, RaycastHit parent)
     {
@@ -105,7 +104,11 @@ public class MeasureDistances : MonoBehaviour
             if (2 * Math.Tan((Math.PI / 180) * new_angle) * hit_up.distance > 1)
             {
                 RaycastHit output = CastRay(new_angle, angle_up, hit_up);
-                hit = output;
+
+                if (output.distance > hit.distance)
+                {
+                    hit = output;
+                }
             }
             
         }
@@ -122,7 +125,11 @@ public class MeasureDistances : MonoBehaviour
             {
                 Debug.DrawRay(camera1.transform.position, angle_right * hit_right.distance, Color.blue, draw_time);
                 RaycastHit output = CastRay(new_angle, angle_right, hit_right);
-                hit = output;
+
+                if (output.distance > hit.distance)
+                {
+                    hit = output;
+                }
             }
 
         }
@@ -139,7 +146,11 @@ public class MeasureDistances : MonoBehaviour
             {
                 Debug.DrawRay(camera1.transform.position, angle_down * hit_down.distance, Color.green, draw_time);
                 RaycastHit output = CastRay(new_angle, angle_down, hit_down);
-                hit = output;
+
+                if (output.distance > hit.distance)
+                {
+                    hit = output;
+                }
             }
 
         }
@@ -156,12 +167,17 @@ public class MeasureDistances : MonoBehaviour
             {
                 Debug.DrawRay(camera1.transform.position, angle_left * hit_left.distance, Color.white, draw_time);
                 RaycastHit output = CastRay(new_angle, angle_left, hit_left);
-                hit = output;
+
+                if (output.distance > hit.distance)
+                {
+                    hit = output;
+                }
+   
             }
 
         }
 
-
+        
         return hit;
     }
 }
