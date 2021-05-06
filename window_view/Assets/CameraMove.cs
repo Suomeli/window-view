@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    
+
     ///Coordinate mode parameters
     public Transform target;
 
@@ -14,12 +14,8 @@ public class CameraMove : MonoBehaviour
 
     /// FreeMode parameters
     public bool FreeMode = false;
-
-    public float speedH = 2.0f;
-    public float speedV = 2.0f;
-
-    private float yaw = 0.0f;
-    private float pitch = 0.0f;
+    float camSens = 0.25f; //how sensitive it with mouse
+    private Vector3 lastMouse = new Vector3(0, 0, 0);
 
     void Update()
     {
@@ -39,43 +35,52 @@ public class CameraMove : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, target_rotation, turningRate * Time.deltaTime);
 
             ///updates the position of the target in X and Z axis by arrow keys
-            Vector3 new_targetPosition = ArrowKeyMovement();
+            Vector3 new_targetPosition = WASDKeyMovements();
             new_targetPosition = new_targetPosition * Time.deltaTime * 5.0f;
             target.Translate(new_targetPosition);
         }
         else
         {
-            ///Freemode camera rotation
-            yaw += speedH * Input.GetAxis("Mouse X");
-            pitch -= speedV * Input.GetAxis("Mouse Y");
+            ///mouse  camera angle 
+            lastMouse = Input.mousePosition - lastMouse;
+            lastMouse = new Vector3(-lastMouse.y * camSens, lastMouse.x * camSens, 0);
+            lastMouse = new Vector3(transform.eulerAngles.x + lastMouse.x, transform.eulerAngles.y + lastMouse.y, 0);
+            transform.eulerAngles = lastMouse;
+            lastMouse = Input.mousePosition;
 
-            transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
+            ///keyboard commands
+            Vector3 p = WASDKeyMovements();
+            p = p * Time.deltaTime * 5.0f;
+            Vector3 newPosition = transform.position;
+            transform.Translate(p);
+            newPosition.x = transform.position.x;
+            newPosition.z = transform.position.z;
+            transform.position = newPosition;
         }
 
     }
 
-    ///returns the values of the target position made by keys
-    private Vector3 ArrowKeyMovement()
-    {
-        Vector3 positionArrows = new Vector3();
-        if (Input.GetKey(KeyCode.UpArrow))
+    ///returns the values of the target position by WASD keys
+    private Vector3 WASDKeyMovements()
+    { 
+        Vector3 p_WASD = new Vector3();
+        if (Input.GetKey(KeyCode.W))
         {
-            positionArrows += new Vector3(0, 0, 1);
+            p_WASD += new Vector3(0, 0, 1);
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.S))
         {
-            positionArrows += new Vector3(0, 0, -1);
+            p_WASD += new Vector3(0, 0, -1);
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A))
         {
-            positionArrows += new Vector3(-1, 0, 0);
+            p_WASD += new Vector3(-1, 0, 0);
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D))
         {
-            positionArrows += new Vector3(1, 0, 0);
+            p_WASD += new Vector3(1, 0, 0);
         }
-
-        return positionArrows;
+        return p_WASD;
     }
 
 }
