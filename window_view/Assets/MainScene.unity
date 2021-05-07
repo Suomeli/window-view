@@ -1001,6 +1001,7 @@ GameObject:
   - component: {fileID: 230106518}
   - component: {fileID: 230106517}
   - component: {fileID: 230106516}
+  - component: {fileID: 230106520}
   m_Layer: 5
   m_Name: Measurements
   m_TagString: Untagged
@@ -1088,9 +1089,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 230106516}
-        m_TargetAssemblyTypeName: ChangeBuildingSide, Assembly-CSharp
-        m_MethodName: RaycastBackwards
+      - m_Target: {fileID: 230106520}
+        m_TargetAssemblyTypeName: MeasureDistances, Assembly-CSharp
+        m_MethodName: AnalyzeView
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1138,6 +1139,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 230106514}
   m_CullTransparentMesh: 1
+--- !u!114 &230106520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230106514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3b3c4fd9f049f44990b8c160064914a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera1: {fileID: 1773849965}
+  layer:
+    serializedVersion: 2
+    m_Bits: 64
+  draw_time: 5
+  marker: {fileID: 2030621572}
 --- !u!4 &248125515 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7650f77ab129c34449733a0f635193a7, type: 3}
@@ -1786,7 +1805,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Anna korkeus...
+  m_text: Anna kerros...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5446,7 +5465,7 @@ GameObject:
   - component: {fileID: 1182031234}
   - component: {fileID: 1182031235}
   m_Layer: 5
-  m_Name: InnputHeightTextArea
+  m_Name: InputHeightTextArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8353,7 +8372,6 @@ GameObject:
   - component: {fileID: 1946787390}
   - component: {fileID: 1946787393}
   - component: {fileID: 1946787394}
-  - component: {fileID: 1946787395}
   m_Layer: 5
   m_Name: OK_button
   m_TagString: Untagged
@@ -8428,18 +8446,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1946787393}
         m_TargetAssemblyTypeName: ui, Assembly-CSharp
         m_MethodName: SendParameters
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1946787395}
-        m_TargetAssemblyTypeName: MeasureDistances, Assembly-CSharp
-        m_MethodName: AnalyzeView
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8526,24 +8532,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89b462382b2ab75418cb738c20634c05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1946787395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1946787388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3b3c4fd9f049f44990b8c160064914a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera1: {fileID: 1773849965}
-  layer:
-    serializedVersion: 2
-    m_Bits: 64
-  draw_time: 15
-  marker: {fileID: 2030621572}
 --- !u!4 &1955502655 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8834a508027bb3b4d94a90cfd0d5ccbb, type: 3}
