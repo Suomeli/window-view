@@ -12,7 +12,7 @@ but should be able to use with any text-like file where each row
 contain the coordinates and the height.
 
 Necessary parameters are inputCoordinates and asciiFileLocation. InputCoordinates is for coordinates
-in int List format. asciiFileLocation is a string parameter for ascii file name. If the ascii file
+in int ARRAY format. asciiFileLocation is a string parameter for ascii file name. If the ascii file
 is in a folder, remember to add the folder name to the string parameter. 
 For example "/tiedostot/1x1m_672497.xyz"
 
@@ -22,7 +22,7 @@ Returns the height in float format.
 public class HeightReader : MonoBehaviour {
 	
 	public float returnHeight(int[] inputCoordinates, string asciiFileLocation) {
-		
+        
 		string line;
 		
 		// Create an variable for height, dist and closest height.
@@ -32,7 +32,7 @@ public class HeightReader : MonoBehaviour {
 		
 		// Path of the ascii file.
         string path = Application.dataPath + asciiFileLocation;
-		
+        
 		StreamReader file = new StreamReader(path);
 		
 		// Loop through rows in ascii file.
@@ -49,24 +49,25 @@ public class HeightReader : MonoBehaviour {
 			// Transforming the coordinates from file into int format.
 			int lat = Int32.Parse(coord1[0]);
 			int lon = Int32.Parse(coord2[0]);
-			
-			// Check that the east coordinate is correct.
-			if (inputCoordinates[0] == lat){
+            
+            // Check that the east coordinate is correct.
+            if (inputCoordinates[0] == lat){
 				// Vheck that the north coordinate is correct.
 				if (inputCoordinates[1] == lon){
 					//When both are correct save the height.
-					height=Convert.ToSingle(rowArray[2]);
+					height = Convert.ToSingle(rowArray[2].Split(char.Parse("."))[0]);
 					break;
 				}
 			}
 			// when the correct coordinates has not been found keep track of the closest coordinates.
 			if (height == 0){
 				//Calculate the distance between coordinates.
-				double dist=Math.Sqrt(Math.Pow((inputCoordinates[0]-lat),2)+Math.Pow((inputCoordinates[1]-lon),2));
-				if (dist<dist_closest){
-					//save the closest coordinates height value and update the closest distance.
-					height_closest=Convert.ToSingle(rowArray[2]);
-					dist_closest=dist;
+				double dist = Math.Sqrt(Math.Pow((inputCoordinates[0] - lat), 2) + Math.Pow((inputCoordinates[1] - lon), 2));
+				if (dist < dist_closest){
+                    //save the closest coordinates height value and update the closest distance.
+                
+                    height_closest = Convert.ToSingle(rowArray[2].Split(char.Parse("."))[0]);
+					dist_closest = dist;
 				}
 			}
 		}
@@ -74,10 +75,10 @@ public class HeightReader : MonoBehaviour {
 		//Check if no height were found.
 		// If no exact coordinates were found then use closest. 
 		if (height == 0){
-			height=height_closest;
+			height = height_closest;
 		}
-		
-		// return results
-		return height;
+        
+        // return results
+        return height;
 	}
 }

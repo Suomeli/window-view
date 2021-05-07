@@ -21,6 +21,7 @@ public class ui : MonoBehaviour {
 
     public string test_address; 
     AddressReader addressReader;
+    HeightReader heightReader;
     public List<int> coordinates;
 
     // coordinates for tie-point in real life and in engine
@@ -41,7 +42,7 @@ public class ui : MonoBehaviour {
     {
         // Returns script component of the gameobject addressreader. If component is not found returns null;
         addressReader = GetComponent<AddressReader>();
-
+        heightReader = GetComponent<HeightReader>();
     }
 
 
@@ -64,22 +65,26 @@ public class ui : MonoBehaviour {
             Debug.Log("Annettu osoite: " + address + " Annettu korkeus: " + height + " Annettu suunta: " + direction);
 
             // Save coordinates into a list
-            // if address has changed, get new coordinates
+            // if address has changed, get new coordinates and ground height
             if (previousaddress.Equals(address) == false){
                 //test_address 
                 if (test_mode == true)
                 {
                     address = test_address;
                 }
-                coordinates = addressReader.returnCoordinates(address, "/osoitteet_hki.json");
+                //coordinates
+                coordinates = addressReader.returnCoordinates(address, "/data/osoitteet_hki.json");
                 previousaddress = address;
-                Debug.Log("address");
+
+                //ground height
+                Debug.Log("Getting new height");
+                int[] toHeightReader = new int[] { coordinates[0], coordinates[1] };
+                ground_height = heightReader.returnHeight(toHeightReader, "/data/1x1m_672497.xyz");
             }
-            
+
 
             ///target height from floors and terrain
-
-            float target_height = height * floor_height + ground_height;
+            float target_height = 1 + (height - 1) * floor_height + ground_height;
 
             ///set target values to variables
             Vector3 coordinateTransformation = coordinateTarget.position - coordinateRealLife;

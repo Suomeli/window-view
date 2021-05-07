@@ -52,7 +52,7 @@ public class MeasureDistances : MonoBehaviour
                         {
                             furthest = output;
                             furthest_distance = furthest.distance;
-                            Debug.Log(furthest.distance);
+                            //Debug.Log(furthest.distance);
                             marker.transform.position = furthest.point;
                         }
                         
@@ -61,7 +61,7 @@ public class MeasureDistances : MonoBehaviour
                     {
                         furthest = hit1;
                         furthest_distance = furthest.distance;
-                        Debug.Log(furthest.distance);
+                        //Debug.Log(furthest.distance);
                         marker.transform.position = furthest.point;
                     }
 

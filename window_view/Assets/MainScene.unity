@@ -7834,12 +7834,6 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   turningRate: 90
   FreeMode: 0
-  speedH: 2
-  speedV: 2
-  rotation: {x: 0, y: 0, z: 0}
-  field1: {fileID: 2067981771}
-  field2: {fileID: 109072450}
-  field3: {fileID: 1293273694}
 --- !u!1001 &1798454810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8372,6 +8366,7 @@ GameObject:
   - component: {fileID: 1946787390}
   - component: {fileID: 1946787393}
   - component: {fileID: 1946787394}
+  - component: {fileID: 1946787395}
   m_Layer: 5
   m_Name: OK_button
   m_TagString: Untagged
@@ -8530,6 +8525,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89b462382b2ab75418cb738c20634c05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1946787395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946787388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2d74097a9aa4424e9405d919476361f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1955502655 stripped
