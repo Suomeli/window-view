@@ -1,9 +1,8 @@
 using UnityEngine;
-using TMPro;
 
 public class CameraMove : MonoBehaviour
 {
-    
+
     ///Coordinate mode parameters
     public Transform target;
 
@@ -15,49 +14,18 @@ public class CameraMove : MonoBehaviour
 
     /// FreeMode parameters
     public bool FreeMode = false;
-
-    public float speedH = 2.0f;
-    public float speedV = 2.0f;
-
-    private float yaw = -0.0f;
-    private float pitch = 0.0f;
-    public Vector3 rotation;
-
-
-    //variables for checkin if UI is active
-    public TMP_InputField field1;
-    public TMP_InputField field2;
-    public TMP_InputField field3;
-
-    private bool UI_active = false;
-    
-
+    float camSens = 0.25f; //how sensitive it with mouse
+    private Vector3 lastMouse = new Vector3(0, 0, 0);
 
     void Update()
     {
-        //check if any inputfield is active
-        //this is quite a hackey way to do it, maybe better ways exist
-        //change UI_active variable based on results
-        if (field1.GetComponent<TMP_InputField>().isFocused || field2.GetComponent<TMP_InputField>().isFocused || field3.GetComponent<TMP_InputField>().isFocused)
-        {
-            UI_active = true;
-        }
-        else
-        {
-            UI_active = false;
-        }
-
-
         ///FreeMode toggle check
-        if (UI_active == false && Input.GetKeyDown("f"))
+        if (Input.GetKeyDown("f"))
         {
             FreeMode = !FreeMode;
         }
-        
-
         if (FreeMode == false)
         {
-            
             ///updates each frame to move camera towards desired position until reached
             Vector3 targetPosition = target.TransformPoint(new Vector3(0, 0, 0));
             transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
@@ -65,24 +33,54 @@ public class CameraMove : MonoBehaviour
             ///updates rotation until desired rotation reached
             Quaternion target_rotation = Quaternion.Euler(target.transform.localRotation.eulerAngles);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, target_rotation, turningRate * Time.deltaTime);
-            //get default view direction for freecam from target
-            yaw = target.transform.localRotation.eulerAngles.y;
 
+            ///updates the position of the target in X and Z axis by arrow keys
+            Vector3 new_targetPosition = WASDKeyMovements();
+            new_targetPosition = new_targetPosition * Time.deltaTime * 5.0f;
+            target.Translate(new_targetPosition);
         }
-        else if(UI_active == false)
+        else
         {
-            ///Freemode camera rotation
-            yaw += speedH * Input.GetAxis("Mouse X");
-            pitch -= speedV * Input.GetAxis("Mouse Y");
+            ///mouse  camera angle 
+            lastMouse = Input.mousePosition - lastMouse;
+            lastMouse = new Vector3(-lastMouse.y * camSens, lastMouse.x * camSens, 0);
+            lastMouse = new Vector3(transform.eulerAngles.x + lastMouse.x, transform.eulerAngles.y + lastMouse.y, 0);
+            transform.eulerAngles = lastMouse;
+            lastMouse = Input.mousePosition;
 
-            transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
-
-
+            ///keyboard commands
+            Vector3 p = WASDKeyMovements();
+            p = p * Time.deltaTime * 5.0f;
+            Vector3 newPosition = transform.position;
+            transform.Translate(p);
+            newPosition.x = transform.position.x;
+            newPosition.z = transform.position.z;
+            transform.position = newPosition;
         }
+
     }
 
+    ///returns the values of the target position by WASD keys
+    private Vector3 WASDKeyMovements()
+    { 
+        Vector3 p_WASD = new Vector3();
+        if (Input.GetKey(KeyCode.W))
+        {
+            p_WASD += new Vector3(0, 0, 1);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            p_WASD += new Vector3(0, 0, -1);
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            p_WASD += new Vector3(-1, 0, 0);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            p_WASD += new Vector3(1, 0, 0);
+        }
+        return p_WASD;
+    }
 
-    
-    
 }
-    
