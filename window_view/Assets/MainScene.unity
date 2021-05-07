@@ -7834,6 +7834,9 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   turningRate: 90
   FreeMode: 0
+  field1: {fileID: 2067981771}
+  field2: {fileID: 109072450}
+  field3: {fileID: 1293273694}
 --- !u!1001 &1798454810
 PrefabInstance:
   m_ObjectHideFlags: 0

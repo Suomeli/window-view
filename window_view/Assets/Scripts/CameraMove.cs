@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class CameraMove : MonoBehaviour
 {
@@ -17,13 +18,29 @@ public class CameraMove : MonoBehaviour
     float camSens = 0.25f; //how sensitive it with mouse
     private Vector3 lastMouse = new Vector3(0, 0, 0);
 
+    public TMP_InputField field1;
+    public TMP_InputField field2;
+    public TMP_InputField field3;
+     
+    private bool UI_active = false;
+
     void Update()
     {
-        ///FreeMode toggle check
-        if (Input.GetKeyDown("f"))
+
+        if(field1.GetComponent<TMP_InputField>().isFocused || field2.GetComponent<TMP_InputField>().isFocused || field3.GetComponent<TMP_InputField>().isFocused)
+        {
+            UI_active = true;
+        }
+        else
+        {
+            UI_active = false;
+        }
+         
+        if (UI_active == false && Input.GetKeyDown("f"))
         {
             FreeMode = !FreeMode;
         }
+
         if (FreeMode == false)
         {
             ///updates each frame to move camera towards desired position until reached
