@@ -18,16 +18,6 @@ Returns the height in float format.
 
 public class HeightReader : MonoBehaviour {
 	
-	//Remove this void when complete.
-	
-	void Start () {
-		
-		int[] test = {25496999, 6672000};
-		float height = returnHeight(test, "/1x1m_672497.xyz");
-
-		Debug.Log(height);
-    }
-	
 	public float returnHeight(int[] inputCoordinates, string asciiFileLocation) {
         
 		string line;
