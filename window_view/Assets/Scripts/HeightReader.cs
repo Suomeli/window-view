@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using System;
-using System.Globalization;
 
 /*
 This script searches height of the input coordinates.
@@ -21,6 +18,16 @@ Returns the height in float format.
 
 public class HeightReader : MonoBehaviour {
 	
+	//Remove this void when complete.
+	
+	void Start () {
+		
+		int[] test = {25496999, 6672000};
+		float height = returnHeight(test, "/1x1m_672497.xyz");
+
+		Debug.Log(height);
+    }
+	
 	public float returnHeight(int[] inputCoordinates, string asciiFileLocation) {
         
 		string line;
@@ -34,29 +41,46 @@ public class HeightReader : MonoBehaviour {
         string path = Application.dataPath + asciiFileLocation;
         
 		StreamReader file = new StreamReader(path);
-		
-		// Loop through rows in ascii file.
-        while((line = file.ReadLine()) != null)  
-		{
-			// Split the row and save the results to an array.
-			string[] rowArray = line.Split(char.Parse(" "));
-			
-			// Cutting the .000 out from the coordinates in the ascii file so that parse can be used on all computers. 
-			//Parse is language depending (if . or , in float).
-			string[] coord1 = rowArray[0].Split(char.Parse("."));
-			string[] coord2 = rowArray[1].Split(char.Parse("."));
-			
-			// Transforming the coordinates from file into int format.
-			int lat = Int32.Parse(coord1[0]);
-			int lon = Int32.Parse(coord2[0]);
+
+        // Loop through rows in ascii file.
+        while ((line = file.ReadLine()) != null)
+        {
+            // Split the row and save the results to an array.
+            string[] rowArray = line.Split(char.Parse(" "));
+
+            // Transforming the coordinates from file into int format. Two different methdods depending on the computer language.
+            //
+            int lat = 0;
+            int lon = 0;
+            float height_loop = 0;
+            // If computer uses . as decimal seperator
+            try
+            {
+                lat = Int32.Parse(rowArray[0]);
+                lon = Int32.Parse(rowArray[1]);
+                height_loop = Convert.ToSingle(rowArray[2]);
+            }
+            // If computer uses , as decimal seperator
+            catch (FormatException)
+            {
+                string[] coord1 = rowArray[0].Split(char.Parse("."));
+                string[] coord2 = rowArray[1].Split(char.Parse("."));
+                string[] height1 = rowArray[2].Split(char.Parse("."));
+
+                lat = Convert.ToInt32(Convert.ToSingle(coord1[0] + "." + coord1[1]));
+                lon = Convert.ToInt32(Convert.ToSingle(coord2[0] + "." + coord2[1]));
+                height_loop = Convert.ToSingle(height1[0] + "." + height1[1]);
+            }
+            
             
             // Check that the east coordinate is correct.
             if (inputCoordinates[0] == lat){
-				// Vheck that the north coordinate is correct.
+				// Check that the north coordinate is correct.
 				if (inputCoordinates[1] == lon){
 					//When both are correct save the height.
-					height = Convert.ToSingle(rowArray[2].Split(char.Parse("."))[0]);
-					break;
+					height = height_loop;
+                    Debug.Log(height);
+                    break;
 				}
 			}
 			// when the correct coordinates has not been found keep track of the closest coordinates.
@@ -66,7 +90,7 @@ public class HeightReader : MonoBehaviour {
 				if (dist < dist_closest){
                     //save the closest coordinates height value and update the closest distance.
                 
-                    height_closest = Convert.ToSingle(rowArray[2].Split(char.Parse("."))[0]);
+                    height_closest = height_loop;
 					dist_closest = dist;
 				}
 			}
@@ -76,8 +100,8 @@ public class HeightReader : MonoBehaviour {
 		// If no exact coordinates were found then use closest. 
 		if (height == 0){
 			height = height_closest;
-		}
-        
+        }
+ 
         // return results
         return height;
 	}
