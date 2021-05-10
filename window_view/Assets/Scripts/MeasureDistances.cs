@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 
 
@@ -18,15 +19,22 @@ public class MeasureDistances : MonoBehaviour
     float FOV_horizontal = 68f;
     float FOV_vertical = 35;
 
+    public Text distanceText;
+
 
     public void AnalyzeView()
     {
         RaycastHit hit1;
         RaycastHit furthest;
 
+
+        //view angles for raycasting from set FOV numbers
         int horizontal_angle = (int) (FOV_horizontal / 2 * -1);
         int vertical_angle = (int) (FOV_vertical / 2 * -1);
+        
+        // angle between two rays in the sparse raycast grid
         float angle_change = 1;
+        // distance initialized
         float furthest_distance = 0;
 
 
@@ -54,6 +62,8 @@ public class MeasureDistances : MonoBehaviour
                             furthest_distance = furthest.distance;
                             //Debug.Log(furthest.distance);
                             marker.transform.position = furthest.point;
+                            distanceText.text = ((int) furthest.distance).ToString() + " m";
+
                         }
                         
                     }
@@ -63,6 +73,8 @@ public class MeasureDistances : MonoBehaviour
                         furthest_distance = furthest.distance;
                         //Debug.Log(furthest.distance);
                         marker.transform.position = furthest.point;
+                        distanceText.text = ((int) furthest.distance).ToString() + " m";
+
                     }
 
                 }

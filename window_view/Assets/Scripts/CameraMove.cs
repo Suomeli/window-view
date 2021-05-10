@@ -26,7 +26,7 @@ public class CameraMove : MonoBehaviour
 
     void Update()
     {
-
+        ///check if ui is active and set boolean
         if(field1.GetComponent<TMP_InputField>().isFocused || field2.GetComponent<TMP_InputField>().isFocused || field3.GetComponent<TMP_InputField>().isFocused)
         {
             UI_active = true;
@@ -35,10 +35,11 @@ public class CameraMove : MonoBehaviour
         {
             UI_active = false;
         }
-         
+        ///if ui not active, activate/deactivate free mode by pressing f
         if (UI_active == false && Input.GetKeyDown("f"))
         {
             FreeMode = !FreeMode;
+            target.position = transform.position;
         }
 
         if (FreeMode == false)
@@ -52,9 +53,13 @@ public class CameraMove : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, target_rotation, turningRate * Time.deltaTime);
 
             ///updates the position of the target in X and Z axis by arrow keys
-            Vector3 new_targetPosition = WASDKeyMovements();
-            new_targetPosition = new_targetPosition * Time.deltaTime * 5.0f;
-            target.Translate(new_targetPosition);
+            if (UI_active == false && Input.GetKeyDown("f"))
+            {
+                Vector3 new_targetPosition = WASDKeyMovements();
+                new_targetPosition = new_targetPosition * Time.deltaTime * 5.0f;
+                target.Translate(new_targetPosition);
+            }
+                
         }
         else
         {
