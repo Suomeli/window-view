@@ -1,9 +1,13 @@
-// This script switches X and Z axes of the imported FBX files
-// Based on https://gist.github.com/FlaShG/a82ae94d5789e92f2bec by Sascha Graeff (2015)
-
 
 using UnityEngine;
 using UnityEditor;
+
+/*
+Unity uses a left-handed and Y-up world coordinate systems. If the imported mesh has a different coordinate system, 
+it will conflict with the Unity world coordinate system. This script switches automatically the Y and Z axes of the imported FBX files. 
+
+Based on https://gist.github.com/FlaShG/a82ae94d5789e92f2bec by Sascha Graeff (2015)
+*/
 
 public class FBXAxesFixer : AssetPostprocessor
 {
