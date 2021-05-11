@@ -3,15 +3,25 @@ using UnityEngine;
 using System;
 
 /*
-This script searches height of the input coordinates.
-The file used is the the elevation model as a ascii-file (.xyz),
+This script searches height of the input coordinates from a text file with coordinates and heights.
+The file used (and tested for) is the the elevation model as a ascii-file (.xyz),
 but should be able to use with any text-like file where each row
-contain the coordinates and the height.
+contain the coordinates and the height in the shape of: "coord1 coord2 height".
 
 Necessary parameters are inputCoordinates and asciiFileLocation. InputCoordinates is for coordinates
 in int ARRAY format. asciiFileLocation is a string parameter for ascii file name. If the ascii file
 is in a folder, remember to add the folder name to the string parameter. 
 For example "/tiedostot/1x1m_672497.xyz"
+
+This script takes into account the culturel differences with the decimal separator and could be therefore
+used with any language system.
+
+This script will use the closest coordinates if the perfect match of coordinates would not be found. 
+This makes it posible to use bigger grids. 
+
+This script will only search for the height in one elevation model file and return the closest height. 
+To be able to search through multiple files for the correct height this scripts needs some changes. 
+This is a possible implementation in the future.
 
 Returns the height in float format. 
 */
@@ -21,8 +31,6 @@ public class HeightReader : MonoBehaviour {
 	public float returnHeight(int[] inputCoordinates, string asciiFileLocation) {
         
 		string line;
-		
-		// Create an variable for height, dist and closest height.
 		float height = 0;
 		double dist_closest = 100000;
 		float height_closest = 0;
@@ -38,11 +46,12 @@ public class HeightReader : MonoBehaviour {
             // Split the row and save the results to an array.
             string[] rowArray = line.Split(char.Parse(" "));
 
-            // Transforming the coordinates from file into int format. Two different methdods depending on the computer language.
-            //
+            // Transforming the coordinates from file string into int format.
+            // Two different methdods depending on the computer language.
             int lat = 0;
             int lon = 0;
             float height_loop = 0;
+			
             // If computer uses . as decimal seperator
             try
             {
@@ -62,24 +71,24 @@ public class HeightReader : MonoBehaviour {
                 height_loop = Convert.ToSingle(height1[0] + "." + height1[1]);
             }
             
-            
+            // Cheking if the current row is the perfect match
+			
             // Check that the east coordinate is correct.
             if (inputCoordinates[0] == lat){
 				// Check that the north coordinate is correct.
 				if (inputCoordinates[1] == lon){
 					//When both are correct save the height.
 					height = height_loop;
-                    Debug.Log(height);
                     break;
 				}
 			}
-			// when the correct coordinates has not been found keep track of the closest coordinates.
+			// when the correct coordinates has not been found keep track of the closest coordinates and its height.
 			if (height == 0){
 				//Calculate the distance between coordinates.
 				double dist = Math.Sqrt(Math.Pow((inputCoordinates[0] - lat), 2) + Math.Pow((inputCoordinates[1] - lon), 2));
+				// If the current row has closer distance to the wanted coordinates
 				if (dist < dist_closest){
                     //save the closest coordinates height value and update the closest distance.
-                
                     height_closest = height_loop;
 					dist_closest = dist;
 				}
