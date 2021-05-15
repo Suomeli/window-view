@@ -6,7 +6,7 @@ using System;
 This script searches height of the input coordinates from a text file with coordinates and heights.
 The file used (and tested for) is the the elevation model as a ascii-file (.xyz),
 but should be able to use with any text-like file where each row
-contain the coordinates and the height in the shape of: "coord1 coord2 height".
+contain the coordinates and the height in the shape of: "E N height".
 
 Necessary parameters are inputCoordinates and asciiFileLocation. InputCoordinates is for coordinates
 in int ARRAY format. asciiFileLocation is a string parameter for ascii file name. If the ascii file
