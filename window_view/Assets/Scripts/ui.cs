@@ -73,13 +73,13 @@ public class ui : MonoBehaviour {
                     address = test_address;
                 }
                 //coordinates
-                coordinates = addressReader.returnCoordinates(address, "/data/osoitteet_hki.json");
+                coordinates = addressReader.returnCoordinates(address, "osoitteet_hki.json");
                 previousaddress = address;
 
                 //ground height
                 Debug.Log("Getting new height");
                 int[] toHeightReader = new int[] { coordinates[0], coordinates[1] };
-                ground_height = heightReader.returnHeight(toHeightReader, "/data/1x1m_672497.xyz");
+                ground_height = heightReader.returnHeight(toHeightReader, "1x1m_672497.xyz");
             }
 
 
@@ -131,7 +131,7 @@ public class ui : MonoBehaviour {
         ///faulty input
         catch (Exception)
         {
-            Debug.Log("Virheellinen syöte!");
+            Debug.Log("Virheellinen syï¿½te!");
         }
     }
 }

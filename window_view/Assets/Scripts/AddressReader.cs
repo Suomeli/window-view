@@ -45,7 +45,7 @@ public class AddressReader : MonoBehaviour
         buildingNumLet = buildingNumLet != null && buildingLetter != null ? buildingNumber+buildingLetter.ToLower() : buildingNumber;
 
         // Path of the json file. Read all lines into a string. Parse the json string via simpleJSON plugin
-        string path = Application.dataPath + jsonFileLocation;
+        string path = Path.Combine(Application.streamingAssetsPath,jsonFileLocation);
         string jsonString = File.ReadAllText(path);
         JSONNode data = JSON.Parse(jsonString);
 

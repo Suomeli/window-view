@@ -36,7 +36,7 @@ public class HeightReader : MonoBehaviour {
 		float height_closest = 0;
 		
 		// Path of the ascii file.
-        string path = Application.dataPath + asciiFileLocation;
+        string path = Path.Combine(Application.streamingAssetsPath,asciiFileLocation);
         
 		StreamReader file = new StreamReader(path);
 
