@@ -36,7 +36,7 @@ public class CameraMove : MonoBehaviour
             UI_active = false;
         }
         ///if ui not active, activate/deactivate free mode by pressing f
-        if (UI_active == false && Input.GetKeyDown("f"))
+        if (UI_active == false)
         {
             FreeMode = !FreeMode;
             target.position = transform.position;
