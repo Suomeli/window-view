@@ -105,7 +105,7 @@ public class ui : MonoBehaviour {
             if (Physics.Raycast(targetEmpty.position, targetEmpty.forward, out hit1, 100, layer))
             {
                 ///if is, check back if wall is closer than camera
-                if (Physics.Raycast(hit1.point, targetEmpty.forward * -1, out hit2, 100, layer))
+                if (Physics.Raycast(hit1.point, targetEmpty.forward * -1, out hit2, 200, layer))
                 {
                     ///if wall closer than camera, move target to the wall
                     difference = targetEmpty.position - hit2.point;
