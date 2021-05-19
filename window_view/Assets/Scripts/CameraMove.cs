@@ -36,7 +36,7 @@ public class CameraMove : MonoBehaviour
             UI_active = false;
         }
         ///if ui not active, activate/deactivate free mode by pressing f
-        if (UI_active == false)
+        if (UI_active == false && Input.GetKeyDown("f"))
         {
             FreeMode = !FreeMode;
             target.position = transform.position;
@@ -53,7 +53,7 @@ public class CameraMove : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, target_rotation, turningRate * Time.deltaTime);
 
             ///updates the position of the target in X and Z axis by arrow keys
-            if (UI_active == false && Input.GetKeyDown("f"))
+            if (UI_active == false)
             {
                 Vector3 new_targetPosition = WASDKeyMovements();
                 new_targetPosition = new_targetPosition * Time.deltaTime * 5.0f;
